@@ -1,0 +1,28 @@
+version: '2'
+services:
+
+  web:
+    build: ./app/web
+    volumes:
+      - ./app/web:/usr/src/app
+    working_dir: /usr/src/app
+    command: sh -c 'npm install; ./node_modules/.bin/nodemon --debug ./server.js'
+    ports:
+      - 8000
+      - 5858
+    depends_on:
+      - mongo
+    networks:
+      - all
+    environment:
+      PORT: 8000
+      MONGODB_URI: "mongodb://mongo:27017/app"
+
+  mongo:
+    image: mongo:3
+    command: mongod --smallfiles
+    networks:
+      - all
+
+networks:
+  all:

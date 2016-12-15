@@ -1,0 +1,35 @@
+{
+  "name": "nodejs-docker-starter-web-app",
+  "version": "0.0.1",
+  "description": "A simple hapi.js-based web application.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/openwebcraft/nodejs-docker-starter.git"
+  },
+  "keywords": [
+    "docker",
+    "nodejs",
+    "hapijs",
+    "mongodb",
+    "boilerplate",
+    "starter",
+    "template"
+  ],
+  "author": "Matthias Geisler <matthias@openwebcraft.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/openwebcraft/nodejs-docker-starter/issues"
+  },
+  "homepage": "https://github.com/openwebcraft/nodejs-docker-starter#readme",
+  "dependencies": {
+    "hapi": "^16.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
