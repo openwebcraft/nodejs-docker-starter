@@ -25,15 +25,15 @@ We`re using [docker-compose](https://docs.docker.com/compose/) to define and run
 
 ## Usage
 
-### Build Step
+The multi-container environment is composed as follows:
 
-Build the container for the web application, onetime... or if you make changes to the `Dockerfile` (e.g. installing system packages or global NPM modules):
+1. The individual services are configured in the file `docker-compose-services.yml`, looked down, bare-minimal configuration. For convenience the default `docker-compose` file name is used.
 
-```shell
-docker-compose build
-```
+2. For the development enviroment the services in 1. are extended in the file `docker-compose.yml`, basically adding additional development juice: mapping the local directory, adding `nodemon` w/ debug option, etc.
 
-### Development Enviroment
+3. For a 2nd enviroment, here *integration* the services in 1. are extended in the file `docker-compose-integration.yml`, using pre-build images.
+
+### Development Enviroment - `docker-compose.yml`
 
 - `nodemon`
 - `NODE_ENV=development`
@@ -41,6 +41,12 @@ docker-compose build
   - Web: `8000`
   - Node.js debug: `5858`
   - MongoDB: `27017`
+
+Build the container for the web application, onetime... or if you make changes to the `Dockerfile` (e.g. installing system packages or global NPM modules):
+
+```shell
+docker-compose build
+```
 
 Start the development enviroment, w/ logs from all services on stdout.
 
@@ -82,7 +88,7 @@ To stop the enviroment:
 docker-compose stop
 ```
 
-### Integration Enviroment
+### Integration Enviroment - `docker-compose-integration.yml`
 
 - `pm2`
 - `NODE_ENV=production`
