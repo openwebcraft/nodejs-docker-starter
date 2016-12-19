@@ -70,7 +70,7 @@ To install a [NPM](http://npmjs.com) module. e.g. [hapi](https://www.npmjs.com/p
 docker-compose exec web npm install hapi --save
 ```
 
-To install a [NPM](http://npmjs.com) module. e.g. [mongodb](https://www.npmjs.com/package/mongodb), into the **STOPPEDs** web container:
+To install a [NPM](http://npmjs.com) module. e.g. [mongodb](https://www.npmjs.com/package/mongodb), into the **STOPPED** web container:
 
 ```shell
 docker-compose run web npm install mongodb --save
@@ -120,11 +120,5 @@ To tail the log files for the web application:
 ```shell
 docker-compose -f docker-compose-integration.yml logs -f web
 ```
-
-**Hints:**
-
-The `docker-compose.yml` is currently doing a `npm install --dev` everytime you start it.
-
-If you don’t want this to happen just adjust the `command` line.
 
 [Docker]: http://docker.com/
