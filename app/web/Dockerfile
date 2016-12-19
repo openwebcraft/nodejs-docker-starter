@@ -9,4 +9,6 @@ WORKDIR /usr/src/app
 COPY . /usr/src/app/
 RUN npm install
 
+RUN npm install pm2@latest -g
+
 CMD [ "npm", "start" ]

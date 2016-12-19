@@ -5,23 +5,19 @@ services:
     extends:
       file: docker-compose-services.yml
       service: web
-    volumes:
-      - ./app/web:/usr/src/app
-    command: ./node_modules/.bin/nodemon --debug bin/www
+    image: matthiasg/nodejsdockerstarter-web:latest
+    command: pm2-docker start bin/www
     depends_on:
       - db
     ports: #  Expose ports (HOST:CONTAINER)
-      - "8000:8000"
-      - "5858:5858"
+      - "80:8000"
     environment:
-      NODE_ENV: development
+      NODE_ENV: production
 
   db:
     extends:
       file: docker-compose-services.yml
       service: db
-    ports: #  Expose ports (HOST:CONTAINER)
-      - "27017:27017"
 
 networks:
   all:

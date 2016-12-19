@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node ./bin/www"
   },
   "repository": {
     "type": "git",
@@ -27,7 +27,8 @@
   },
   "homepage": "https://github.com/openwebcraft/nodejs-docker-starter#readme",
   "dependencies": {
-    "hapi": "^16.0.1"
+    "hapi": "^16.0.1",
+    "mongodb": "^2.2.16"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"

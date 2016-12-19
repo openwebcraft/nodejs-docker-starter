@@ -1,28 +1,38 @@
 'use strict';
 
 const Hapi = require('hapi');
+const MongoClient = require('mongodb').MongoClient;
+
+const config = require('./config');
 
 // Create a server with a host and port
 const server = new Hapi.Server();
-server.connection({ 
-    port: process.env.PORT || 8000
+server.connection({
+    host: config.server.host,
+    port: config.server.port
 });
 
 // Add the route
 server.route({
     method: 'GET',
-    path:'/hello', 
+    path: '/',
     handler: function (request, reply) {
 
-        return reply('hello world');
+        MongoClient.connect(config.services.mongodb.url, function (err, db) {
+            if (err) {
+                throw err;
+            }
+            return reply('Connected successfully to MongoDB server');
+
+            db.close();
+        });
+    },
+    config: {
+        state: {
+            parse: true,
+            failAction: 'log'
+        }
     }
 });
 
-// Start the server
-server.start((err) => {
-
-    if (err) {
-        throw err;
-    }
-    console.log('Server running at:', server.info.uri);
-});
+module.exports = server;
